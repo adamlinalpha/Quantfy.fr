@@ -1,0 +1,264 @@
+body {
+    background-color: #000130;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+}
+*{
+    z-index: 2;
+}
+#top {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+}
+
+#title {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#menus {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin: 40px;
+}
+
+content {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab1 {
+    height: 130vh;
+    width: 100%;
+    margin-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadre1 {
+    width: 1250px;
+    height: 700px;
+    border-radius: 20px;
+    border: 2px solid #FFF;
+    display: flex;
+    flex-direction: row;
+}
+
+.parameter {
+    height: 100%;
+    width: 60%;
+    border-right: 2px solid #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.para {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.label {
+    width: 54%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.input {
+    width: 46%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit, .edit1{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #FFF;
+    background: rgba(255, 255, 255, 0.00);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: white;
+    text-align: center;
+}
+
+option {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title {
+    width: 100%;
+    height: 7%;
+    margin-top: 7%;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#portfo {
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.ticker {
+    height: 10%;
+    width: 100%;
+}
+
+.part1 .portfo {
+    height: 100%;
+    width: 50%;
+}
+
+button {
+    display: flex;
+    width: 260px;
+    height: 82px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background-color: transparent;
+    border-radius: 40px;
+    border: 2px solid #FFF;
+    margin-top: 50px;
+}
+
+.ticker {
+    display: flex;
+    color: rgba(255, 255, 255, 0.90);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.part1 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.part2 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit2, .edit3{
+    width: 200px;
+height: 40px;
+border-radius: 10px;
+border: 2px solid #FFF;
+background: rgba(255, 255, 255, 0.00);
+color: white;
+font-size: 20px;
+text-align: center;
+}
+footer {
+    height: 70vh;
+    width: 100%;
+    background-color: #414141;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+}
+
+#tools {
+    width: 300px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+#about {
+    width: 300px;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer span {
+    font-weight: 700;
+    margin-bottom: 17px;
+    text-decoration: underline;
+}
+
+footer a {
+    font-weight: 400;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 17px;
+}
+#svg1{
+    position: absolute;
+    z-index: -1;
+    transform: translateX(847px) translateY(300px);
+    opacity: 50%;
+}
+
+#svg2{
+    position: absolute;
+    z-index: -1;
+    transform: translateX(-53px) translateY(-53px);
+    opacity: 50%;
+}
