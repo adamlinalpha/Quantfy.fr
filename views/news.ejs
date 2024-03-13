@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo</title>
+    <link rel="stylesheet" href="news.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+
+<body>
+    <header>
+        <div id="top">
+            <div id="title">
+                <span>Quantfy</span>
+            </div>
+            <div id="menus">
+                <a href="http://localhost:3000/home">Home</a>
+                <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+                <a href="http://localhost:3000/dcf">DCF</a>
+                <a href="http://localhost:3000/news">News</a>
+                <a href="http://localhost:3000/analysis">Analysis</a>
+            </div>
+        </div>
+        <div id="bottom">
+            <hr>
+            <h1>News</h1>
+            <hr>
+        </div>
+    </header>
+    
+    <div id="content">
+        <form action="post" id="formtop">
+            <div class="container">
+                <div class="radio-group">
+                    <input type="radio" id="market-news::top-news" name="options" value="market-news::top-news"
+                        checked="true">
+                    <label for="market-news::top-news">Trending news</label>
+                    <input type="radio" id="market-news::all" name="options" value="market-news::all">
+                    <label for="market-news::all">All news</label>
+                    <input type="radio" id="market-news::on-the-move" name="options" value="market-news::on-the-move">
+                    <label for="market-news::on-the-move">On the move</label>
+                    <input type="radio" id="market-news::market-pulse" name="options" value="market-news::market-pulse">
+                    <label for="market-news::market-pulse">Market pulse</label>
+                    <input type="radio" id="market-news::notable-calls" name="options"
+                        value="market-news::notable-calls">
+                    <label for="market-news::notable-calls">Notable calls</label>
+                    <input type="radio" id="market-news::buybacks" name="options" value="market-news::buybacks">
+                    <label for="market-news::buybacks">Buybacks</label>
+                    <input type="radio" id="market-news::commodities" name="options" value="market-news::commodities">
+                    <label for="market-news::commodities">Commodities</label>
+                    <input type="radio" id="market-news::crypto" name="options" value="market-news::crypto">
+                    <label for="market-news::crypto">Crypto</label>
+                    <input type="radio" id="market-news::issuance" name="options" value="market-news::issuance">
+                    <label for="market-news::issuance">Issuance</label>
+                    <input type="radio" id="market-news::dividend-stocks" name="options"
+                        value="market-news::dividend-stocks">
+                    <label for="market-news::dividend-stocks">Dividend-stocks</label>
+                    <input type="radio" id="market-news::dividend-funds" name="options"
+                        value="market-news::dividend-funds">
+                    <label for="market-news::dividend-funds">Dividend funds</label>
+                    <input type="radio" id="market-news::earnings" name="options" value="market-news::earnings">
+                    <label for="market-news::earnings">Earnings</label>
+                    <input type="radio" id="market-news::global" name="options" value="market-news::global">
+                    <label for="market-news::global">Global</label>
+                    <input type="radio" id="market-news::guidance" name="options" value="market-news::guidance">
+                    <label for="market-news::guidance">Guidance</label>
+                    <input type="radio" id="market-news::ipos" name="options" value="market-news::ipos">
+                    <label for="market-news::ipos">IPOS</label>
+                    <input type="radio" id="market-news::spacs" name="options" value="market-news::spacs">
+                    <label for="market-news::spacs">SPACS</label>
+                    <input type="radio" id="market-news::politics" name="options" value="market-news::politics">
+                    <label for="market-news::politics">Politics</label>
+                    <input type="radio" id="market-news::us-economy" name="options" value="market-news::us-economy">
+                    <label for="market-news::us-economy">US-economy</label>
+                    <input type="radio" id="market-news::consumer" name="options" value="market-news::consumer">
+                    <label for="market-news::consumer">Consumer</label>
+                    <input type="radio" id="market-news::energy" name="options" value="market-news::energy">
+                    <label for="market-news::energy">Energy</label>
+                    <input type="radio" id="market-news::financials" name="options" value="market-news::financials">
+                    <label for="market-news::financials">Financials</label>
+                    <input type="radio" id="market-news::healthcare" name="options" value="market-news::healthcare">
+                    <label for="market-news::healthcare">Healthcare</label>
+                    <input type="radio" id="arket-news::mlps" name="options" value="arket-news::mlps">
+                    <label for="arket-news::mlps">MLPS</label>
+                    <input type="radio" id="market-news::reits" name="options" value="market-news::reits">
+                    <label for="market-news::reits">REITS</label>
+                    <input type="radio" id="market-news::technology" name="options" value="market-news::technology">
+                    <label for="market-news::technology">Technology</label>
+                </div>
+            </div>
+    </div>
+    <hr>
+    <h3 id="alert">
+        The articles and news items are not authored by me; I merely categorize and repurpose data sourced from Seeking Alpha. My utilization of this information is lawful, as I employ an official API.
+    </h3>
+    </form>
+    <div id="articles">
+        <div class="article" id="num1">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num2">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num3">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num4">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num5">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num6">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num7">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num8">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="article" id="num9">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="article" id="num10">
+            <div class="image">
+                <img src="aliexpress.jpeg" alt="aliexpress">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <span>Alibaba ditches plan to spin off cloud business and list supermarket</span>
+                </div>
+                <div class="read">
+                    <span>Shares fall 10% after Chinese ecommerce giant says US export controls have created
+                        "uncertainties" for its cloud business</span>
+                </div>
+            </div>
+        </div>
+    </div>
+        <footer>
+            <div id="tools">
+                <span>Tools</span>
+                <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+                <a href="http://localhost:3000/dcf">DCF</a>
+                <a href="http://localhost:3000/news">News</a>
+                <a href="http://localhost:3000/analysis">Analysis</a>
+            </div>
+            <div id="about">
+                <span>About</span>
+                <a href="http://localhost:3000/aboutme">About Me</a>
+                <a href="http://localhost:3000/contactme">Contact Me</a>
+            </div>
+        </footer>
+        <div id="loading-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
+            <div style="text-align: center; color: white;">
+              <p>Loading...</p>
+            </div>
+        <script src="news.js"></script>
+</body>
+
+</html>

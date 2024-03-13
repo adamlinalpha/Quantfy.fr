@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo</title>
+    <link rel="stylesheet" href="montecarloresulttab1.css">
+    <link rel="stylesheet" href="montecarloresulttab2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="nominal.js"></script>
+        <script src="real.js"></script>
+        <script src="success.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="svg1">
+            <img src="Vector 1.svg" alt="">
+          </div>
+        <div id="svg2">
+            <img src="Vector 2.svg" alt="">
+          </div>
+          <div id="svg3">
+            <img src="Vector 3.svg" alt="">
+          </div>
+        <div id="top">
+            <div id="title">
+                <span>Quantfy</span>
+            </div>
+            <div id="menus">
+                <a href="http://localhost:3000/home">Home</a>
+                <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+                <a href="http://localhost:3000/dcf">DCF</a>
+                <a href="http://localhost:3000/news">News</a>
+                <a href="http://localhost:3000/analysis">Analysis</a>
+            </div>
+        </div>
+        <div id="bottom">
+            <hr>
+            <h1>Monte Carlo Simulation</h1>
+        </div>
+    </header>
+    <div class="content">
+        <form class="tab1" action="/montecarlo" method="post">
+            <div class="cadre1">
+                <div class="parameter">
+                    <div id="startingamount" class="para">
+                        <label class="label" for="startingamount">Starting amount ($):</label>
+                        <div class="input"><input class="edit" type="number" name="startingamount" id="startingamount" value="1000000" step="1"></div>
+                    </div>
+                    <div id="contribution" class="para">
+                        <label class="label" for="contribution">Contribution:</label>
+                        <div class="input">
+                            <select class="edit" name="contribution" id="contributionjs">
+                            <option value="withdrawfixedamount" selected="selected">Withdraw fixed amount</option>
+                            <option value="withdrawpercentage">Withdraw percentage</option>
+                            <option value="addfixedamount">Add fixed amount</option>
+                            <option value="addpercentage">Add percentage</option>
+                        </select></div>
+                    </div>
+                    <div id="contributionfrequence" class="para">
+                        <label class="label" for="contributionfrequence">Contribution frequence:</label>
+                        <div class="input">
+                            <select class="edit" name="contributionfrequence" id="contributionfrequence">
+                            <option value="Weekly" selected="selected">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Yearly">Yearly</option>
+                        </select></div>
+                    </div>
+                    <div id="contributionamount" class="para">
+                        <label class="label" for="contributionamount">Contribution amount ($):</label>
+                        <div class="input"><input class="edit" type="number" name="contributionamount" id="contributionamountjs" value="10000" step="1"></div>
+                    </div>
+                    <div id="inflationrate" class="para">
+                        <label class="label" for="inflationrate">Inflation rate (%):</label>
+                        <div class="input"><input class="edit" type="number" name="inflationrate" id="inflationratejs" value="2"></div>
+                    </div>
+                    <div id="simulationyears" class="para">
+                        <label class="label" for="simulationyears">Simulation years:</label>
+                        <div class="input"><input class="edit" type="number" name="simulationyears" id="simulationyearsjs" value="20" min="3" max="60" step="1"></div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div class="title"><span>Portfolio</span></div>
+                    <div id="portfo">
+                        <div id="titles" class="ticker">
+                            <div class="part1"><span>Ticker</span></div>
+                            <div class="part2"><span>Allocation (%)</span></div>
+                        </div>
+                        <div id="ticker1" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker1" id="ticker1js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation1" id="allocation1js" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                        <div id="ticker2" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker2" id="ticker2js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation2" id="allocation2js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div id="ticker3" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker3" id="ticker3js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation3" id="allocation3js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div id="ticker4" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker4" id="ticker4js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation4" id="allocation4js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div id="ticker5" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker5" id="ticker5js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation5" id="allocation5js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div id="ticker6" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker6" id="ticker6js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation6" id="allocation6js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <div id="ticker7" class="ticker">
+                            <div class="part1">
+                                <input class="edit2" type="text" name="ticker7" id="ticker7js" minlength="1" maxlength="5" value="SPY">
+                            </div>
+                            <div class="part2">
+                                <input class="edit3" type="number" name="allocation7" id="allocation7js" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit">Simulate</button>
+        </form>
+        <div class="tab2">
+            <div class="cadre2">
+                <div id="summary">                
+                    <h2>Summary</h2>
+                    <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>10th percentile</th>
+                            <th>25th percentile</th>
+                            <th>50th percentile</th>
+                            <th>75th percentile</th>
+                            <th>90th percentile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Return nominal (YoY)</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Return real (YoY)</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Real end balance</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Nominal end balance</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td>20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="nominal">
+                <h2 class="decal">Simulated Portfolio Balance (Nominal)</h2>
+                <div id="chart_div_nominal" style="width: 100%; height: 700px;"></div>
+            </div>
+            <div id="real">
+                <h2 class="decal">Simulated Portfolio Balance (Real)</h2>
+                <div id="chart_div_real" style="width: 100%; height: 700px;"></div>
+            </div>
+            <div id="success">
+                <h2 class="decal">Portfolio Success</h2>
+                <div id="area_chart" style="width: 100%; height: 700px"></div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <footer>
+        <div id="tools">
+            <span>Tools</span>
+            <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+            <a href="http://localhost:3000/dcf">DCF</a>
+            <a href="http://localhost:3000/news">News</a>
+            <a href="http://localhost:3000/analysis">Analysis</a>
+        </div>
+        <div id="about">
+            <span>About</span>
+            <a href="http://localhost:3000/aboutme">About Me</a>
+            <a href="http://localhost:3000/contactme">Contact Me</a>
+        </div>
+    </footer>
+    <script src="montecarlostyleresult.js"></script>
+</body>
+</html>

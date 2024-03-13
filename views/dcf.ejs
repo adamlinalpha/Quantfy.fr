@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo</title>
+    <link rel="stylesheet" href="dcf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="loading-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div style="text-align: center; color: white;">
+          <p>Loading...</p>
+        </div>
+      </div>
+    <header>
+        <div id="top">
+            <div id="title">
+                <span>Quantfy</span>
+            </div>
+            <div id="menus">
+                <a href="http://localhost:3000/home">Home</a>
+                <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+                <a href="http://localhost:3000/dcf">DCF</a>
+                <a href="http://localhost:3000/news">News</a>
+                <a href="http://localhost:3000/analysis">Analysis</a>
+            </div>
+        </div>
+        <div id="bottom">
+            <hr>
+            <h1>Advanced DCF Calculator</h1>
+    </header>
+    <div id="svg2">
+        <img src="Vector 2.svg" alt="">
+    </div>
+    <div id="page">
+        <div id="stocksearchbar">
+            <div id="stocksubject">
+                <div class="logocontainer">
+                    <img src="https://www.1min30.com/wp-content/uploads/2019/05/Apple-logo-1.jpg"
+                        alt="Apple logo : histoire, signification et évolution, symbole" class="logo">
+                </div>
+                <div id="subject">
+                    <div id="name">
+                        <h3>Apple Inc (NAS:AAPL)</h3>
+                    </div>
+                    <div id="numb">
+                        <div id="price">
+                            <h4>$189,41</h4>
+                        </div>
+                        <div id="change"><span>(-0,16%)</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="searchbar">
+                <div id="center">
+                    <form action="post" id="formsearch">
+                        <input type="text" name="search" id="search" placeholder="Change stock">
+                        <img src="glass.svg" alt="glass" id="glass">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="cases">
+            <div id="valueline">
+                <div id="line">
+                    <div id="line1" class="line"></div>
+                    <div id="line2" class="line"></div>
+                    <div id="line3" class="line"></div>
+                    <div id="mesure"></div>
+                </div>
+                <div id="valuename">
+                    <span>Undervalued</span>
+                    <span>Overvalued</span>
+                </div>
+            </div>
+            <div id="marketcap"><h5>Marketcap : 1 000 000</h5></div>
+            <div id="pe"><h5>PE : 27</h5></div>
+            <form action="post" id="inputdcf">
+                <div id="input">
+                    <div id="EPSFCF" class="input">
+                        <label for="EPSFCF">EPS/FCF ($):</label>
+                        <input type="number" name="EPSFCF" id="EPSFCF" class="inputd" value="10">
+                    </div>
+                    <div class="input">
+                        <label for="discountrate">Discount Rate (%):</label>
+                        <input type="number" name="discountrate" id="discountRate" class="inputd" value="11">
+                    </div>
+                </div>
+                <div id="stages">
+                    <div id="early">
+                        <h4>Early Stage :</h4>
+                        <div class="growthrate">
+                            <label for="growthrateearly" class="labelgrowth">Growth Rate (%):</label>
+                            <input type="growthrateearly" name="growthrateearly" id="growthrateearly"
+                                class="inputgrowth" value="10">
+                        </div>
+                        <div class="years">
+                            <label for="yearsearly">Years:</label>
+                            <input type="yearsearly" name="yearsearly" id="yearsearly" class="inputyears" value="7">
+                        </div>
+                    </div>
+                    <div id="final">
+                        <h4>Final Stage :</h4>
+                        <div class="growthrate">
+                            <label for="growthratelate" class="labelgrowth">Growth Rate (%):</label>
+                            <input type="growthratelate" name="growthratelate" id="growthratelate" class="inputgrowth" value="4">
+                        </div>
+                        <div class="years">
+                            <label for="yearslate">Years:</label>
+                            <input type="yearslate" name="yearslate" id="yearslate" class="inputyears" value="13">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="summary">
+                <table>
+                    <tr class="first">
+                        <th class="th1">Stock Price</th>
+                        <td class="td1" id="stockprice">$189.41</td>
+                    </tr>
+                    <tr>
+                        <th class="th1">Fair Value</th>
+                        <td class="td1" id="fairValue">$205.21</td>
+                    </tr>
+                    <tr>
+                        <th class="last" class="th1">Margin of Safety</th>
+                        <td class="last" class="td1" id="marginofsafety">-7.25%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="simulation">
+            <div id="rates">
+                <h2>Annual Rates</h2>
+                <table id="bottomtable">
+                    <tr class="first">
+                        <th>Data</th>
+                        <td>10y</td>
+                        <td>5y</td>
+                        <td>3y</td>
+                        <td>Estimates</td>
+                    </tr>
+                    <tr>
+                        <th>EPS</th>
+                        <td id="tenGrowthEPS">16,2%</td>
+                        <td id="fiveGrowthEPS">19,8%</td>
+                        <td id="threeGrowthEPS">-3,7%</td>
+                        <td id="estimatesGrowthEPS">13,2%</td>
+                    </tr>
+                    <tr>
+                        <th>Revenue</th>
+                        <td id="tenGrowthRevenue">14,3%</td>
+                        <td id="fiveGrowthRevenue">15,3%</td>
+                        <td id="threeGrowthRevenue">15,7%</td>
+                        <td id="estimatesGrowthRevenue">6,7%</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="annuals">
+                <h2>Annuals</h2>
+                <table id="bottomtable">
+                    <tr class="first">
+                        <th>Data</th>
+                        <td id="dateOne">Sept 2014</td>
+                        <td id="dateTwo">Sept 2015</td>
+                        <td id="dateThree">Sept 2016</td>
+                        <td id="dateFour">Sept 2017</td>
+                        <td id="dateFive">Sept 2018</td>
+                        <td id="dateSix">Sept 2019</td>
+                        <td id="dateSeven">Sept 2020</td>
+                        <td id="dateEight">Sept 2022</td>
+                        <td id="dateNine">Sept 2023</td>
+                        <td id="dateTen">Sept 2024</td>
+                    </tr>
+                    <tr>
+                        <th>EPS</th>
+                        <td id="EPSOne">7,61</td>
+                        <td id="EPSTwo">7,61</td>
+                        <td id="EPSThree">7,61</td>
+                        <td id="EPSFour">7,61</td>
+                        <td id="EPSFive">7,61</td>
+                        <td id="EPSSix">7,61</td>
+                        <td id="EPSSeven">7,61</td>
+                        <td id="EPSEight">7,61</td>
+                        <td id="EPSNine">7,61</td>
+                        <td id="EPSTen">7,61</td>
+                    </tr>
+                    <tr>
+                        <th>Revenue</th>
+                        <td id="RevenueOne">7,61</td>
+                        <td id="RevenueTwo">7,61</td>
+                        <td id="RevenueThree">7,61</td>
+                        <td id="RevenueFour">7,61</td>
+                        <td id="RevenueFive">7,61</td>
+                        <td id="RevenueSix">7,61</td>
+                        <td id="RevenueSeven">7,61</td>
+                        <td id="RevenueEight">7,61</td>
+                        <td id="RevenueNine">7,61</td>
+                        <td id="RevenueTen">7,61</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="estimates">
+                <h2>Estimates</h2>
+                <table id="bottomtable">
+                    <tr class="first" id="DateEstimates">
+                        <th>Data</th>
+                        <td class="remove">Sept 2016</td>
+                        <td class="remove">Sept 2017</td>
+                        <td class="remove">Sept 2018</td>
+                        <td class="remove">Sept 2019</td>
+                        <td class="remove">Sept 2020</td>
+                        <td class="remove">Sept 2022</td>
+                        <td class="remove">Sept 2023</td>
+                    </tr>
+                    <tr id="EPSEstimates">
+                        <th>EPS</th>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                    </tr>
+                    <tr id="RevenueEstimates">
+                        <th>Revenue</th>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                        <td class="remove">7,61</td>
+                    </tr>
+                    <tr id="NumberEstimates">
+                        <th>Estimates</th>
+                        <td class="remove">47</td>
+                        <td class="remove">27</td>
+                        <td class="remove">15</td>
+                        <td class="remove">3</td>
+                        <td class="remove">1</td>
+                        <td class="remove">1</td>
+                        <td class="remove">1</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="data">
+                <h2>Data Graph</h2>
+                <div id="curve_chart"></div>
+            </div>
+            <div id="growth">
+                <h2>Growth Graph EPS</h2>
+                <div id="chartContainer">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="peers">
+            <div id="titlepeers">
+                <h2>Peers</h2>
+            </div>
+            <div id="peers1">
+                <div id="unit1" class="unit">
+                    <div class="logocontainer">
+                        <img src="https://www.1min30.com/wp-content/uploads/2019/05/Apple-logo-1.jpg"
+                            alt="Apple logo : histoire, signification et évolution, symbole" class="logo">
+                    </div>
+
+                    <div id="subject">
+                        <div id="name">
+                            <h3>Apple Inc (AAPL)</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="unit2" class="unit">
+                    <div class="logocontainer">
+                        <img src="https://www.financecharts.com/media/HPQ.svg"
+                            alt="HP (HPQ) Market Cap History Charts - Net Worth of HP" class="logo" />
+                    </div>
+
+                    <div id="subject">
+                        <div id="name">
+                            <h3>Hewlett-Packard (HPQ)</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="peers2">
+                <div id="unit3" class="unit">
+                    <div class="logocontainer">
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
+                            alt="Fichier:Google &quot;G&quot; logo.svg — Wikipédia" / class="logo">
+                    </div>
+
+                    <div id="subject">
+                        <div id="name">
+                            <h3>Alphabet Inc Class A (GOOGL)</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="unit4" class="unit">
+                    <div class="logocontainer">
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_logo.jpg/480px-Microsoft_logo.jpg"
+                            alt="Fichier:Microsoft logo.jpg — Wikipédia" class="logo" />
+                    </div>
+
+                    <div id="subject">
+                        <div id="name">
+                            <h3>Microsoft (MSFT)</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <div id="tools">
+            <span>Tools</span>
+            <a href="http://localhost:3000/montecarlo">Monte Carlo</a>
+            <a href="http://localhost:3000/dcf">DCF</a>
+            <a href="http://localhost:3000/news">News</a>
+            <a href="http://localhost:3000/analysis">Analysis</a>
+        </div>
+        <div id="about">
+            <span>About</span>
+            <a href="http://localhost:3000/aboutme">About Me</a>
+            <a href="http://localhost:3000/contactme">Contact Me</a>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="dcf.js"></script>
+</body>
+
+</html>
