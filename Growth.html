@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+
+    <style>
+        body {
+            background-color: #000130;
+        }
+
+        #chartContainer {
+            width: 900px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var growthData = [
+                ['2013', 5], ['2014', 8], ['2015', -2], ['2016', 10], ['2017', -5],
+                ['2018', 12], ['2019', 6], ['2020', -3], ['2021', 9], ['2022', 4],
+                ['2023', -9], ['2024', 11], ['2025', 3], ['2026', -1]
+            ];
+
+            var total = growthData.reduce((acc, curr) => acc + curr[1], 0);
+            var average = total / growthData.length;
+
+            var labels = growthData.map(item => item[0]);
+
+            var positiveValues = growthData.map(item => (item[1] >= 0) ? item[1] : null);
+            var negativeValues = growthData.map(item => (item[1] < 0) ? item[1] : null);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Positive Growth',
+                        data: positiveValues,
+                        backgroundColor: '#42c749'
+                    },
+                    {
+                        label: 'Negative Growth',
+                        data: negativeValues,
+                        backgroundColor: '#e82e2e'
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: {
+                                color: 'white',
+                            },
+                            grid: {
+                                color: '#4d4d4d',
+                            },
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: 'white',
+                                callback: value => value + '%',
+                            },
+                            grid: {
+                                color: '#4d4d4d',
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: context => `${context.dataset.label}: ${context.parsed.y}%`
+                            },
+                            titleColor: 'black',
+                            bodyColor: 'black',
+                            backgroundColor: "white"
+                        },
+                        annotation: {
+                            annotations: [{
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y',
+                                value: average,
+                                borderColor: '#425CC7',
+                                borderWidth: 3,
+                                label: {
+                                    content: `Average: ${average.toFixed(2)}%`,
+                                    enabled: true,
+                                    position: 'right',
+                                    backgroundColor: '#425CC7',
+                                    fontStyle: 'bold',
+                                    fontSize: 12,
+                                    padding: 4,
+                                    display:true,
+                                    color:'white',
+                                }
+                            }]
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

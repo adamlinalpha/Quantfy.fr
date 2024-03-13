@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique des Bénéfices d'Apple</title>
+  <!-- Inclure la bibliothèque Google Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // Charger la bibliothèque Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Définir les données du graphique
+      var data = google.visualization.arrayToDataTable([
+        ['Année', 'Bénéfices', 'Estimations futures', 'Chiffre daffaire', 'Estimations chiffre'],
+        ['2013', 37.04, null, 200, null],
+        ['2014', 39.51, null, 230.4, null ],
+        ['2015', 53.39, null, 215.5, null],
+        ['2016', 45.69, null, 238, null],
+        ['2017', 48.35, null, 250, null],
+        ['2018', 59.53, null, 260, null],
+        ['2019', 55.26, null, 298, null],
+        ['2020', 57.41, null, 237, null],
+        ['2021', 94.01, null, 287, null],
+        ['2022', 100.35, 100.00, 295, 295 ],
+        ['2023', null, 105.00, null, 305 ],
+        ['2024', null, 120.00, null, 358 ],
+        ['2025', null, 110.00, null, 370 ],
+        ['2026', null, 125.00, null, 376 ],
+
+        // Ajoutez d'autres années d'estimations si nécessaire
+      ]);
+
+      // Définir les options du graphique
+      var options = {
+  curveType: 'function',
+  legend: { position: 'bottom', textStyle: { color: 'white', fontName: 'Poppins' } },
+  backgroundColor: { fill: '#000130' },
+  titleTextStyle: { color: 'white', fontName: 'Poppins' },
+  hAxis: { textStyle: { color: 'white', fontName: 'Poppins' } },
+  vAxis: { textStyle: { color: 'white', fontName: 'Poppins' } },
+  opacity: 0,
+  pointSize: 8,
+  tooltip: { isHtml: true },
+  series: {
+    0: { color: 'blue'},  // Afficher la légende pour la Série 0 (Bénéfices)
+    1: { color: 'blue', lineDashStyle: [4, 4], visibleInLegend: false },  // Masquer la légende pour la Série 1 (Estimations futures)
+    2: { color: 'red'},   // Afficher la légende pour la Série 2 (Chiffre d'affaire)
+    3: { color: 'red', lineDashStyle: [4, 4], visibleInLegend: false },
+  }
+};
+
+      // Instancier et dessiner le graphique
+      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      chart.draw(data, options);
+    }
+  </script>
+  <!-- Inclure la police Poppins -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+</head>
+
+<body style="background-color: #000130;"> <!-- Ajout de la couleur d'arrière-plan pour la balise body -->
+  <!-- Conteneur du graphique -->
+  <div id="curve_chart" style="width: 900px; height: 500px"></div>
+</body>
+
+</html>

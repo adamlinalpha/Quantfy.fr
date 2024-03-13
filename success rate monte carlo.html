@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation Monte Carlo - Nombre de Portefeuilles</title>
+  <!-- Inclure la bibliothèque Google Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Simulation de données (exemples)
+      var years = 30;
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Year');
+      data.addColumn('number', 'Nombre de Portefeuilles');
+
+      // Remplacez ces valeurs par les résultats réels de votre simulation
+      for (var year = 1; year <= years; year++) {
+        // Exemple : Remplacez par le nombre réel de portefeuilles ayant une valeur cette année
+        var numberOfPortfolios = Math.floor(Math.random() * 100) + 1;
+        data.addRow([year, numberOfPortfolios]);
+      }
+
+      var options = {
+        curveType: 'function',
+        legend: { position: 'bottom', textStyle: { color: '#ffffff' } }, // Couleur de la légende
+        isStacked: true,
+        colors: ['#3366cc'],
+        backgroundColor: { fill: '#000130' }, // Couleur de l'arrière-plan
+        titleTextStyle: { color: '#ffffff', display: 'none' }, // Supprime le titre
+        hAxis: { textStyle: { color: '#ffffff' } }, // Couleur du texte de l'axe horizontal
+        vAxis: { textStyle: { color: '#ffffff' } } // Couleur du texte de l'axe vertical
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('area_chart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="area_chart" style="width: 900px; height: 500px"></div>
+</body>
+</html>

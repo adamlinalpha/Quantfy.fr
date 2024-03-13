@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Charts Example</title>
+    <!-- Ajouter la bibliothèque Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000130;
+            color: #ffffff;
+        }
+    </style>
+    <script type="text/javascript">
+        // Charger la bibliothèque Google Charts
+        google.charts.load('current', {'packages':['corechart']});
+        
+        // Définir la fonction de dessin pour créer le graphique
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Créer un tableau de données avec 5 courbes sur 50 périodes
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Période');
+            data.addColumn('number', 'Percentile 10');
+            data.addColumn('number', 'Percentile 25');
+            data.addColumn('number', 'Percentile 50');
+            data.addColumn('number', 'Percentile 75');
+            data.addColumn('number', 'Percentile 90');
+
+            var rows = [];
+            for (var j = 1; j <= 50; j++) {
+                var row = [j];
+                row.push(Math.random() * 100); // Valeur pour Percentile 10
+                row.push(Math.random() * 100); // Valeur pour Percentile 25
+                row.push(Math.random() * 100); // Valeur pour Percentile 50
+                row.push(Math.random() * 100); // Valeur pour Percentile 75
+                row.push(Math.random() * 100); // Valeur pour Percentile 90
+                rows.push(row);
+            }
+
+            data.addRows(rows);
+
+            // Définir les options du graphique
+            var options = {
+                curveType: 'function',
+                legend: {
+                    position: 'bottom',
+                    textStyle: {
+                        fontSize: 9,
+                        color: '#ffffff'  // Couleur du texte de la légende
+                    }
+                },
+                backgroundColor: '#000130',  // Couleur de l'arrière-plan
+                hAxis: {
+                    textStyle: {
+                        color: '#ffffff'  // Couleur du texte de l'axe horizontal
+                    }
+                },
+                vAxis: {
+                    textStyle: {
+                        color: '#ffffff'  // Couleur du texte de l'axe vertical
+                    }
+                }
+            };
+
+            // Créer un objet de graphique de ligne et le dessiner dans la div avec l'ID "chart_div"
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <!-- Div pour afficher le graphique -->
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+</body>
+</html>
